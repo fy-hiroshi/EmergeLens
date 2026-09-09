@@ -1,5 +1,7 @@
 # EmergeLens: A Virtual Reality (VR) Game
 
+This repository contains a Unity-based mobile VR box game developed as a capstone project for disaster awareness and preparedness. The simulation utilizes a Google Cardboard-style VR headset paired with a Bluetooth controller to immerse players in high-stress emergency scenarios, building crucial survival memory while keeping them physically safe.
+
 ## How to Import Unity Project from Github to Unity Hub
 
 ### Step 1: Download the GitHub Repository
