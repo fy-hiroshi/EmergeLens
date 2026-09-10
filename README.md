@@ -7,7 +7,7 @@ This repository contains a Unity-based mobile VR box game developed as a capston
 ### Step 1: Download the GitHub Repository
 Open your terminal or Git Bash and run:
 ```
-git clone https://github.com/username/repository.git
+git clone https://github.com/fy-hiroshi/repository.git
 ```
 
 ### Step 2: Identify the Root Project Directory
