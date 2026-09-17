@@ -28,7 +28,7 @@ public class ExitDoor : MonoBehaviour, IInteractable
         // 0. NPC rescue check (Fire Level 3)
         if (npcToRescue != null && !npcToRescue.HasBeenFound)
         {
-            if (VRMessageUI.Instance != null) VRMessageUI.Instance.ShowMessage("Find the distressed civilian first.");
+            if (VRMessageUI.Instance != null) VRMessageUI.Instance.ShowMessage("Find your distressed family member first.");
             return;
         }
 

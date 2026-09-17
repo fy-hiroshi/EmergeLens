@@ -70,7 +70,7 @@ public class NPCFollowController : MonoBehaviour, IInteractable
         StartFollowing();
 
         if (VRMessageUI.Instance != null)
-            VRMessageUI.Instance.ShowMessage("The Distressed Civilian is now following you! Find yourselves to an exit!");
+            VRMessageUI.Instance.ShowMessage("Your Distressed Familiy Member is now following you! Find a viable exit!");
     }
 
     private void Update()

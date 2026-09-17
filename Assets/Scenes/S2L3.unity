@@ -618,9 +618,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 30711732}
-  - component: {fileID: 30711734}
   - component: {fileID: 30711733}
-  m_Layer: 0
+  - component: {fileID: 30711734}
+  m_Layer: 8
   m_Name: DoorPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -657,7 +657,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AutoDoor
   openAngle: 90
   openSpeed: 2
-  closeDelay: 1
 --- !u!65 &30711734
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -673,12 +672,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.36, y: 0.58, z: 0.05}
-  m_Center: {x: -0.02, y: 0.1, z: 0}
+  m_Size: {x: 0.04, y: 0.16, z: 0.02}
+  m_Center: {x: 0.01, y: 0.1, z: -0.001}
 --- !u!1 &32569622
 GameObject:
   m_ObjectHideFlags: 0
@@ -29840,9 +29839,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 485303811}
-  - component: {fileID: 485303813}
   - component: {fileID: 485303812}
-  m_Layer: 0
+  - component: {fileID: 485303813}
+  m_Layer: 8
   m_Name: DoorPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29879,7 +29878,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AutoDoor
   openAngle: 90
   openSpeed: 2
-  closeDelay: 1
 --- !u!65 &485303813
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29895,12 +29893,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.36, y: 0.58, z: 0.05}
-  m_Center: {x: -0.02, y: 0.1, z: 0}
+  m_Size: {x: 0.04, y: 0.16, z: 0.02}
+  m_Center: {x: 0.01, y: 0.1, z: -0.001}
 --- !u!1 &491418818
 GameObject:
   m_ObjectHideFlags: 0
@@ -36531,7 +36529,7 @@ GameObject:
   - component: {fileID: 723926975}
   - component: {fileID: 723926974}
   - component: {fileID: 723926973}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39740,7 +39738,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1019720444}
-  - component: {fileID: 1019720443}
+  - component: {fileID: 1019720445}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -39748,7 +39746,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1019720443
+--- !u!4 &1019720444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019720442}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.6694, y: 1.44151, z: -9.00084}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1019720445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -39757,9 +39770,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1019720442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ee50d4ef53333a43b4985f7eed5509b, type: 3}
+  m_Script: {fileID: 11500000, guid: de6b95341a6e52749b90feb5f99d6b09, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FireLevelTwoManager
+  m_EditorClassIdentifier: Assembly-CSharp::FireLevelThreeManager
   bedModel: {fileID: 823729233}
   bedCamera: {fileID: 435497552}
   mainPlayerRig: {fileID: 457859481}
@@ -39780,21 +39793,6 @@ MonoBehaviour:
   gameOverScreen: {fileID: 1729669821}
   clothMask: {fileID: 7975444000301967289}
   maskFillMultiplier: 0.4
---- !u!4 &1019720444
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1019720442}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.6694, y: 1.44151, z: -9.00084}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1020651551
 GameObject:
   m_ObjectHideFlags: 0
@@ -51043,9 +51041,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1162403977}
-  - component: {fileID: 1162403979}
   - component: {fileID: 1162403978}
-  m_Layer: 0
+  - component: {fileID: 1162403979}
+  m_Layer: 8
   m_Name: DoorPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51082,7 +51080,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AutoDoor
   openAngle: -90
   openSpeed: 2
-  closeDelay: 1
 --- !u!65 &1162403979
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51098,12 +51095,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.36, y: 0.58, z: 0.05}
-  m_Center: {x: -0.02, y: 0.1, z: 0}
+  m_Size: {x: 0.04, y: 0.16, z: 0.02}
+  m_Center: {x: 0.01, y: 0.1, z: -0.001}
 --- !u!1 &1164116125
 GameObject:
   m_ObjectHideFlags: 0
@@ -74163,9 +74160,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1459574771}
-  - component: {fileID: 1459574773}
   - component: {fileID: 1459574772}
-  m_Layer: 0
+  - component: {fileID: 1459574773}
+  m_Layer: 8
   m_Name: DoorPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74202,7 +74199,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AutoDoor
   openAngle: 90
   openSpeed: 2
-  closeDelay: 1
 --- !u!65 &1459574773
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74218,12 +74214,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.36, y: 0.58, z: 0.05}
-  m_Center: {x: -0.02, y: 0.1, z: 0}
+  m_Size: {x: 0.04, y: 0.16, z: 0.02}
+  m_Center: {x: 0.01, y: 0.1, z: -0.001}
 --- !u!1 &1462050101
 GameObject:
   m_ObjectHideFlags: 0
@@ -74519,7 +74515,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AutoDoor
   openAngle: 90
   openSpeed: 2
-  closeDelay: 1
 --- !u!65 &1475835176
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75339,7 +75334,7 @@ GameObject:
   - component: {fileID: 1578663087}
   - component: {fileID: 1578663086}
   - component: {fileID: 1578663085}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86409,7 +86404,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press The Correcponding Button To Wake Up!
+  m_text: Press The Corresponding Button To Wake Up!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9f2bdc46d08d4d43b6c35839dff3a94, type: 2}
   m_sharedMaterial: {fileID: 6611200066948368021, guid: a9f2bdc46d08d4d43b6c35839dff3a94, type: 2}
@@ -86439,8 +86434,8 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 60
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -87601,7 +87596,7 @@ GameObject:
   - component: {fileID: 1793898425}
   - component: {fileID: 1793898424}
   - component: {fileID: 1793898423}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101877,7 +101872,7 @@ GameObject:
   - component: {fileID: 8482381505380725759}
   - component: {fileID: 8418640414519295402}
   - component: {fileID: 8482381505380725760}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103237,7 +103232,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3376861976820980790, guid: 94d390549e3842a4b99d1b7c3eb75ef0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.15
+      value: -2.05
       objectReference: {fileID: 0}
     - target: {fileID: 3376861976820980790, guid: 94d390549e3842a4b99d1b7c3eb75ef0, type: 3}
       propertyPath: m_LocalPosition.y

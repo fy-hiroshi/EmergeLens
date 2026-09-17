@@ -1,17 +1,15 @@
 using UnityEngine;
-using System.Collections;
 
-public class AutoDoor : MonoBehaviour
+public class InteractableDoor3: MonoBehaviour, IInteractable
 {
+    [Header("Door Settings")]
     public float openAngle = 90f;
     public float openSpeed = 2f;
-    public float closeDelay = 2f;
 
     private Quaternion closedRotation;
     private Quaternion openRotation;
 
-    private bool playerNearby = false;
-    private Coroutine closeCoroutine;
+    private bool isOpen = false;
 
     void Start()
     {
@@ -26,7 +24,7 @@ public class AutoDoor : MonoBehaviour
 
     void Update()
     {
-        Quaternion targetRotation = playerNearby
+        Quaternion targetRotation = isOpen
             ? openRotation
             : closedRotation;
 
@@ -37,31 +35,11 @@ public class AutoDoor : MonoBehaviour
         );
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnGazeEnter() { }
+    public void OnGazeExit() { }
+
+    public void OnInteract()
     {
-        if (!other.CompareTag("Player"))
-            return;
-
-        playerNearby = true;
-
-        if (closeCoroutine != null)
-        {
-            StopCoroutine(closeCoroutine);
-            closeCoroutine = null;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (!other.CompareTag("Player"))
-            return;
-
-        closeCoroutine = StartCoroutine(CloseAfterDelay());
-    }
-
-    IEnumerator CloseAfterDelay()
-    {
-        yield return new WaitForSeconds(closeDelay);
-        playerNearby = false;
+        isOpen = !isOpen; // Always toggles: open if closed, close if open
     }
 }
