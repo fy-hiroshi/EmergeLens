@@ -9,6 +9,7 @@ public class LevelThreeManager : MonoBehaviour
     public MonoBehaviour pcMovement;  
     public EarthquakeSafeZone[] safeZones; 
     public ExitDoor finalExitDoor; 
+    public EarthquakeAudioManager quakeAudioFx;
 
     [Header("Level 3 Environment")]
     public GameObject[] roomLights;          
@@ -71,6 +72,7 @@ public class LevelThreeManager : MonoBehaviour
 
         isQuakeActive = true;
         originalCamPos = mainCamera.localPosition;
+        if (quakeAudioFx != null) quakeAudioFx.StartRumble();
 
         if (bedroomDoor != null) bedroomDoor.SwingOpen();
 
@@ -120,6 +122,7 @@ public class LevelThreeManager : MonoBehaviour
 
         isQuakeActive = false;
         mainCamera.localPosition = originalCamPos;
+        if (quakeAudioFx != null) quakeAudioFx.StopRumble();
         if (alertUI != null) alertUI.SetActive(false);
         
         SetWalkFrozen(false);
@@ -212,6 +215,9 @@ public class LevelThreeManager : MonoBehaviour
             float elapsed = 0f;
             originalCamPos = mainCamera.localPosition;
 
+            // NEW: Start the audio fade-in right as the physical shaking begins
+            if (quakeAudioFx != null) quakeAudioFx.StartRumble();
+
             foreach (SlidingFurniture item in slidingItems)
             {
                 if (item != null) item.TriggerSlide(aftershockDuration);
@@ -230,6 +236,9 @@ public class LevelThreeManager : MonoBehaviour
 
             mainCamera.localPosition = originalCamPos;
             if (alertUI != null) alertUI.SetActive(false);
+            
+            // NEW: Fade the audio back out now that the tremor has stopped
+            if (quakeAudioFx != null) quakeAudioFx.StopRumble();
         }
     }
 

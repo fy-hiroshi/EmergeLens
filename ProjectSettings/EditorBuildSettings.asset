@@ -29,6 +29,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/S1L3.unity
     guid: 522733b08915a1d4d8f3bf047ef33445
+  - enabled: 1
+    path: Assets/Scenes/S2L1.unity
+    guid: 2f0485a88d3c9974b8e521e456488b39
+  - enabled: 1
+    path: Assets/Scenes/S2L2.unity
+    guid: 25fbf4d8ebd3a824187a96ebb5f5d7a3
+  - enabled: 1
+    path: Assets/Scenes/S2L3.unity
+    guid: 2ab87d13848789449a37c867edb3f67f
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

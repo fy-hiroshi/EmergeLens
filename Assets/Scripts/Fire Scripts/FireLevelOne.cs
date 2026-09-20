@@ -2,11 +2,21 @@ using UnityEngine;
 
 public class FireLevelOne : MonoBehaviour
 {
-    public GameObject levelCompleteUI;
+    [Header("Transition Manager")]
+    public LevelCompleteManager levelCompleteManager; 
     
     public void TriggerLevelComplete()
     {
         Debug.Log("Fire successfully extinguished!");
-        if (levelCompleteUI != null) levelCompleteUI.SetActive(true);
+        
+        // Tells your master transition script to take over and spawn the UI
+        if (levelCompleteManager != null) 
+        {
+            levelCompleteManager.TriggerLevelComplete();
+        }
+        else
+        {
+            Debug.LogWarning("Level Complete Manager is missing from the Inspector!");
+        }
     }
 }

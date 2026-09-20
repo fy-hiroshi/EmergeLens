@@ -11,6 +11,7 @@ public class EarthquakeLevelManager : MonoBehaviour
     public ExitDoor exitDoor;
     public LevelTwoChecklist checklist;
     public LevelTwoChecklist levelTwoManager;
+    public EarthquakeAudioManager quakeAudioFx;
 
     [Header("Camera & UI")]
     public Transform mainCamera;
@@ -47,6 +48,7 @@ public class EarthquakeLevelManager : MonoBehaviour
         // 2. Earthquake Starts
         isQuakeActive = true;
         originalCamPos = mainCamera.localPosition;
+        if (quakeAudioFx != null) quakeAudioFx.StartRumble();
 
         // NEW: Drop the debris right as the shaking begins
         if (checklist != null)
@@ -84,6 +86,7 @@ public class EarthquakeLevelManager : MonoBehaviour
         
         isQuakeActive = false;
         mainCamera.localPosition = originalCamPos;
+        if (quakeAudioFx != null) quakeAudioFx.StopRumble();
         if (alertUI != null) alertUI.SetActive(false);
         
         // NEW: Disable the safe zone so it stops throwing danger warnings
