@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class EditorVRTestingControls : MonoBehaviour
 {
-#if UNITY_EDITOR
     [Header("References")]
     public CharacterController characterController;
     public Transform cameraTransform;
@@ -30,6 +29,7 @@ public class EditorVRTestingControls : MonoBehaviour
     public float cameraStandingHeight = 1.6f;
     public float cameraCrouchingHeight = 0.8f;
 
+#if UNITY_EDITOR
     void Start()
     {
         if (characterController == null)
