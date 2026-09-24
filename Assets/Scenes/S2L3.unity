@@ -593,7 +593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelCompleteManager
   levelCompleteUI: {fileID: 1572252431}
   nextLevelName: Level Selection
-  mainMenuName: MainMenu
+  mainMenuName: Main Menu
 --- !u!4 &26142582
 Transform:
   m_ObjectHideFlags: 0
@@ -64918,6 +64918,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1354976172}
+  - component: {fileID: 1354976173}
   m_Layer: 3
   m_Name: CameraOffset
   m_TagString: Untagged
@@ -64941,6 +64942,18 @@ Transform:
   - {fileID: 1072529384}
   m_Father: {fileID: 457859482}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1354976173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354976171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa0de2743b315f48878a3f20bac5eb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MobileGyroTracking
 --- !u!1 &1355349133 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3723578828453805111, guid: c0b16ccf4b2dfb34dae5eb602c466351, type: 3}

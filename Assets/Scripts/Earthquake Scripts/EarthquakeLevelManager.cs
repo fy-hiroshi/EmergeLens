@@ -14,6 +14,10 @@ public class EarthquakeLevelManager : MonoBehaviour
     public EarthquakeAudioManager quakeAudioFx;
 
     [Header("Camera & UI")]
+    // NOTE: This should point at a DEDICATED shake anchor node (local position
+    // always (0,0,0) at rest), NOT at cameraOffset or the eye-camera rig.
+    // Crouch changes cameraOffset's height; this transform only ever jitters
+    // around zero, so the two systems can never fight over the same value.
     public Transform mainCamera;
     public Image qtePromptImage;
     public Sprite[] controllerButtonSprites; 
@@ -25,8 +29,7 @@ public class EarthquakeLevelManager : MonoBehaviour
     public float shakeMagnitude = 0.15f;
 
     public bool isQuakeActive = false;
-    private Vector3 originalCamPos;
-    
+
     // Store original speeds so we can restore them later
     private float defaultMobileSpeed = 3f;
     private float defaultPCSpeed = 3.5f;
@@ -47,7 +50,6 @@ public class EarthquakeLevelManager : MonoBehaviour
 
         // 2. Earthquake Starts
         isQuakeActive = true;
-        originalCamPos = mainCamera.localPosition;
         if (quakeAudioFx != null) quakeAudioFx.StartRumble();
 
         // NEW: Drop the debris right as the shaking begins
@@ -85,7 +87,7 @@ public class EarthquakeLevelManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         
         isQuakeActive = false;
-        mainCamera.localPosition = originalCamPos;
+        if (mainCamera != null) mainCamera.localPosition = Vector3.zero;
         if (quakeAudioFx != null) quakeAudioFx.StopRumble();
         if (alertUI != null) alertUI.SetActive(false);
         
@@ -139,12 +141,18 @@ public class EarthquakeLevelManager : MonoBehaviour
 
     IEnumerator CameraShakeRoutine()
     {
+        // Jitters around the anchor's resting position, (0,0,0) -- it never
+        // reads or remembers a "before quake" height, so it can't stomp on
+        // whatever cameraOffset's current crouch/standing height is.
         while (isQuakeActive)
         {
-            float x = originalCamPos.x + Random.Range(-1f, 1f) * shakeMagnitude;
-            float y = originalCamPos.y + Random.Range(-1f, 1f) * (shakeMagnitude / 2f);
-            float z = originalCamPos.z + Random.Range(-1f, 1f) * shakeMagnitude;
-            mainCamera.localPosition = new Vector3(x, y, z);
+            if (mainCamera != null)
+            {
+                float x = Random.Range(-1f, 1f) * shakeMagnitude;
+                float y = Random.Range(-1f, 1f) * (shakeMagnitude / 2f);
+                float z = Random.Range(-1f, 1f) * shakeMagnitude;
+                mainCamera.localPosition = new Vector3(x, y, z);
+            }
             yield return null;
         }
     }
