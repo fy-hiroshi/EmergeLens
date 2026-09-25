@@ -32,7 +32,7 @@ public class BreakerBox : MonoBehaviour, IInteractable
                 // Level 3 Sequence: Direct the player to the NPC
                 if (VRMessageUI.Instance != null)
                 {
-                    VRMessageUI.Instance.ShowMessage("Breaker turned off. Cure the injured NPC first before grabbing the go bag.");
+                    VRMessageUI.Instance.ShowMessage("Breaker turned off. Cure your injured housemate first.");
                 }
             }
             else

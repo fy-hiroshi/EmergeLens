@@ -53,7 +53,7 @@ public class InjuredNPC : MonoBehaviour, IInteractable
         // 5-Second Bandage Timer
         if (shardsRemaining <= 0 && isGazedAt && !isCured && HasBandage()) 
         {
-            if (Input.GetKey(KeyCode.JoystickButton0) || Input.GetKey(KeyCode.E) || Input.GetMouseButton(0))
+            if (VRInputConfig.InteractHeld())
             {
                 if (timerCanvas != null && !timerCanvas.activeSelf) timerCanvas.SetActive(true);
 

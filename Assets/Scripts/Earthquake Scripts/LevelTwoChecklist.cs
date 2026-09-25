@@ -37,6 +37,12 @@ public class LevelTwoChecklist : MonoBehaviour
         
         if (VRMessageUI.Instance != null) 
             VRMessageUI.Instance.ShowMessage("Power lost! Find a flashlight!");
+
+        GrabbableItem[] allItems = FindObjectsByType<GrabbableItem>();
+        foreach (GrabbableItem item in allItems)
+        {
+            item.EnableHighlight();
+        }
     }
 
     void Update()

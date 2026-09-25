@@ -18,7 +18,7 @@ public class GlassShard : MonoBehaviour, IInteractable
     {
         if (isGazedAt)
         {
-            if (Input.GetKey(KeyCode.JoystickButton0) || Input.GetKey(KeyCode.E) || Input.GetMouseButton(0))
+            if (VRInputConfig.InteractHeld())
             {
                 if (timerCanvas != null && !timerCanvas.activeSelf) timerCanvas.SetActive(true);
                 

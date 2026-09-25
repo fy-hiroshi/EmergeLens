@@ -43,6 +43,7 @@ public class EditorVRTestingControls : MonoBehaviour
         HandleEditorMouseLook();
         HandleEditorMovement();
         HandleCrouch();
+        HandleModelRotation();
     }
 
     void HandleEditorMouseLook()
@@ -82,12 +83,21 @@ public class EditorVRTestingControls : MonoBehaviour
             animator.SetBool("isCrouching", isCrouching);
             animator.SetBool("isCrouchWalking", isMoving && isCrouching);
         }
+    }
 
-        // --- Rotation Logic ---
-        Vector3 flatMove = new Vector3(moveDirection.x, 0f, moveDirection.z);
-        if (flatMove != Vector3.zero && characterModel != null)
+    // UPDATED: The model now tracks where the camera is looking (yaw only),
+    // continuously, instead of only turning to face the movement direction
+    // while walking.
+    void HandleModelRotation()
+    {
+        if (characterModel == null || cameraTransform == null) return;
+
+        Vector3 flatForward = cameraTransform.forward;
+        flatForward.y = 0f;
+
+        if (flatForward.sqrMagnitude > 0.0001f)
         {
-            Quaternion targetRot = Quaternion.LookRotation(flatMove);
+            Quaternion targetRot = Quaternion.LookRotation(flatForward.normalized);
             characterModel.rotation = Quaternion.Slerp(characterModel.rotation, targetRot, rotationSpeed * Time.deltaTime);
         }
     }

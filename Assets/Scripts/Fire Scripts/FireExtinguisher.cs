@@ -31,7 +31,7 @@ public class FireExtinguisher : MonoBehaviour
 
     void Update()
     {
-        bool isSqueezingTrigger = Input.GetMouseButton(0) || Input.GetKey(KeyCode.JoystickButton0) || Input.GetKey(KeyCode.E);
+        bool isSqueezingTrigger = VRInputConfig.InteractHeld();
 
         // NEW: Forces the player to physically let go of the button before spraying is allowed
         if (requiresRelease)

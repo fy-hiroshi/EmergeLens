@@ -11,6 +11,7 @@ public class VRControllerMovement : MonoBehaviour
 
     [Header("Movement Settings")]
     public float walkSpeed = 3.0f;
+    public float rotationSpeed = 10f;
     private CharacterController controller;
 
     [Header("Crouch Settings")]
@@ -29,6 +30,7 @@ public class VRControllerMovement : MonoBehaviour
     {
         HandleMovement();
         HandleCrouch();
+        HandleModelRotation();
     }
 
     void HandleMovement()
@@ -56,10 +58,26 @@ public class VRControllerMovement : MonoBehaviour
         }
     }
 
+    // NEW: The model now tracks where the camera/head is looking (yaw only),
+    // continuously, instead of only turning while walking.
+    void HandleModelRotation()
+    {
+        if (characterModel == null || vrCamera == null) return;
+
+        Vector3 flatForward = vrCamera.forward;
+        flatForward.y = 0f;
+
+        if (flatForward.sqrMagnitude > 0.0001f)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(flatForward.normalized);
+            characterModel.rotation = Quaternion.Slerp(characterModel.rotation, targetRot, rotationSpeed * Time.deltaTime);
+        }
+    }
+
     void HandleCrouch()
     {
-        // (Use "JoystickButton1" instead of LeftControl if editing VRControllerMovement)
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C))
+        // Now driven by VRInputConfig.crouchButton (B button by default).
+        if (VRInputConfig.CrouchPressed())
         {
             isCrouching = !isCrouching;
 

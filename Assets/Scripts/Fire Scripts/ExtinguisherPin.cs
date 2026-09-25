@@ -13,7 +13,7 @@ public class ExtinguisherPin : MonoBehaviour, IInteractable
 
     void Update()
     {
-        if (isGazedAt && (Input.GetKey(KeyCode.JoystickButton0) || Input.GetKey(KeyCode.E) || Input.GetMouseButton(0)))
+        if (isGazedAt && VRInputConfig.InteractHeld())
         {
             if (timerCanvas != null && !timerCanvas.activeSelf) timerCanvas.SetActive(true);
             

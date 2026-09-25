@@ -28,6 +28,12 @@ public class VRGazeRaycaster : MonoBehaviour
     {
         HandleGazeRaycast();
         HandleControllerInput();
+
+        //for (int i = 0; i < 20; i++)
+            //if (Input.GetKeyDown(KeyCode.JoystickButton0 + i))
+                //Debug.Log("Pressed JoystickButton" + i);
+
+        //for (int i = 1; i <= 10; i++) { float v = Input.GetAxis("TestAxis" + i); if (Mathf.Abs(v) > 0.05f) Debug.Log("TestAxis" + i + " = " + v); }
     }
 
     void HandleGazeRaycast()
@@ -72,7 +78,8 @@ public class VRGazeRaycaster : MonoBehaviour
 
     void HandleControllerInput()
     {
-        if (currentTarget != null && (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)))
+        // Now driven by VRInputConfig.rightTrigger.
+        if (currentTarget != null && VRInputConfig.InteractPressed())
         {
             currentTarget.OnInteract();
         }
