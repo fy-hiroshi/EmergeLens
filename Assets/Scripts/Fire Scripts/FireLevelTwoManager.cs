@@ -6,7 +6,7 @@ public class FireLevelTwoManager : MonoBehaviour
 {
     [Header("Intro Sequence")]
     public GameObject bedModel;
-    public Camera bedCamera;
+    public GameObject bedCamera;
     public GameObject mainPlayerRig;
     public Image blackScreenUI;
     public AudioSource smokeAlarmAudio;
@@ -28,6 +28,12 @@ public class FireLevelTwoManager : MonoBehaviour
     [Header("Smoke Mask")]
     public GrabbableItem clothMask;
     [Range(0f, 1f)] public float maskFillMultiplier = 0.4f;
+
+    [Header("Objective UI")]
+    // The "Objective" TMP Text CHILD under the ObjectiveUI canvas -- NOT the
+    // canvas itself, so the canvas stays active and usable by other scripts.
+    public GameObject objectiveText;
+    public float objectiveUIDuration = 5f;
 
     private float currentSmokeToxicity = 0f;
     private bool isAwake = false;
@@ -91,18 +97,26 @@ public class FireLevelTwoManager : MonoBehaviour
         bedCamera.gameObject.SetActive(false);
         
         mainPlayerRig.SetActive(true);
-        isAwake = true;
-        
-        // 7. Trigger the instructional warning immediately after standing up
-        if (VRMessageUI.Instance != null) 
-            VRMessageUI.Instance.ShowMessage("Stay low and evacuate! Toxic smoke gathers near the ceiling.", 3f);
 
-        // 8. Wait 3 seconds for the player to read the warning
-        yield return new WaitForSeconds(3f);
-        
-        // 9. Activate the smoke meter hazard
+        // 7. Show the objective reminder text, and wait for it to finish
+        // before moving on -- the smoke meter shouldn't start filling
+        // until after it disappears.
+        if (objectiveText != null) yield return StartCoroutine(ShowObjectiveUI());
+
+        // 8. Activate the smoke meter hazard. isAwake only flips on here now,
+        // not back at step 6 -- Update() only accumulates toxicity while
+        // isAwake is true, so this is what was letting it build up silently
+        // during the 5 seconds the objective text was showing.
+        isAwake = true;
         if (smokeMeterBar != null) 
             smokeMeterBar.transform.parent.gameObject.SetActive(true);
+    }
+
+    IEnumerator ShowObjectiveUI()
+    {
+        objectiveText.SetActive(true);
+        yield return new WaitForSeconds(objectiveUIDuration);
+        objectiveText.SetActive(false);
     }
 
     IEnumerator WakeUpQTE()

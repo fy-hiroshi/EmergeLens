@@ -13,6 +13,13 @@ public class FlashlightMechanic : MonoBehaviour
     public GameObject qtePromptUI;
     public int mashesRequired = 5;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip flickerSound; // Played on every individual flicker
+    public AudioClip mashSound;    // Played on every button mash while broken
+    [Range(0f, 1f)] public float flickerVolume = 1f;
+    [Range(0f, 1f)] public float mashVolume = 1f;
+
     private bool isBroken = false;
     private int currentMashes = 0;
 
@@ -29,6 +36,9 @@ public class FlashlightMechanic : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.R))
             {
                 currentMashes++;
+
+                if (audioSource != null && mashSound != null) audioSource.PlayOneShot(mashSound, mashVolume);
+
                 if (currentMashes >= mashesRequired)
                 {
                     FixFlashlight();
@@ -58,6 +68,8 @@ public class FlashlightMechanic : MonoBehaviour
         int flickers = Random.Range(3, 6);
         for (int i = 0; i < flickers; i++)
         {
+            if (audioSource != null && flickerSound != null) audioSource.PlayOneShot(flickerSound, flickerVolume);
+
             spotLight.intensity = 0.1f; 
             yield return new WaitForSeconds(Random.Range(0.05f, 0.15f));
             spotLight.intensity = normalIntensity;

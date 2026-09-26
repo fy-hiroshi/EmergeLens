@@ -26,8 +26,9 @@ public class CookingTask : MonoBehaviour, IInteractable
     {
         if (isGazedAt && !taskComplete)
         {
-            // Bypasses string-based Input Manager to prevent crashes
-            if (Input.GetKey(KeyCode.JoystickButton0) || Input.GetKey(KeyCode.E) || Input.GetMouseButton(0))
+            // Now driven by VRInputConfig (Right Trigger), same as the
+            // other interactables.
+            if (VRInputConfig.InteractHeld())
             {
                 if (timerCanvas != null && !timerCanvas.activeSelf) timerCanvas.SetActive(true);
                 

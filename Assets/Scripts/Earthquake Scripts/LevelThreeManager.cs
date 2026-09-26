@@ -36,6 +36,8 @@ public class LevelThreeManager : MonoBehaviour
     public float shakeMagnitude = 0.35f; 
 
     private bool isQuakeActive = false;
+    private bool isLevelComplete = false; // Set once the level is won; blocks any further game-over checks
+    private Coroutine aftershockRoutineHandle; // Reference so we can explicitly stop the aftershock loop
     private Vector3 originalCamPos;
     
     private float defaultMobileSpeed = 3f;
@@ -128,7 +130,7 @@ public class LevelThreeManager : MonoBehaviour
         SetWalkFrozen(false);
 
         // NEW: This physically starts the aftershock loop!
-        StartCoroutine(AftershockRoutine());
+        aftershockRoutineHandle = StartCoroutine(AftershockRoutine());
     }
 
     IEnumerator QTERoutine()
@@ -189,7 +191,7 @@ public class LevelThreeManager : MonoBehaviour
             
             if (alertUI != null) alertUI.SetActive(true);
 
-            float hideTimer = 5f;
+            float hideTimer = 10f;
             while (hideTimer > 0)
             {
                 hideTimer -= Time.deltaTime;
@@ -271,6 +273,15 @@ public class LevelThreeManager : MonoBehaviour
 
     public void TriggerLevelComplete()
     {
+        isLevelComplete = true;
+
+        // Stop any pending/looping aftershocks so they can't trigger a game over after winning
+        if (aftershockRoutineHandle != null)
+        {
+            StopCoroutine(aftershockRoutineHandle);
+            aftershockRoutineHandle = null;
+        }
+
         SetWalkFrozen(true);
         if (levelCompleteScreen != null) levelCompleteScreen.SetActive(true);
     }
@@ -283,6 +294,8 @@ public class LevelThreeManager : MonoBehaviour
 
     public void GameOver()
     {
+        if (isLevelComplete) return; // Level already won — ignore any late/in-flight failure checks
+
         Debug.LogError("GAME OVER: Player failed a survival check!");
         isQuakeActive = false;
         SetWalkFrozen(true);

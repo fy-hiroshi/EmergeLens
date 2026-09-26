@@ -4,6 +4,7 @@ public class GarbageTrigger : MonoBehaviour
 {
     public GameObject steamParticles;
     public GameObject fireParticles;
+    public GameObject hitbox;
     public AudioSource smokeAlarm;
 
     void OnTriggerEnter(Collider other)
@@ -14,6 +15,7 @@ public class GarbageTrigger : MonoBehaviour
         if (item != null)
         {
             item.gameObject.SetActive(false); 
+            if (hitbox != null) hitbox.SetActive(true);
             if (steamParticles != null) steamParticles.SetActive(false);
             if (fireParticles != null) fireParticles.SetActive(true);
             if (smokeAlarm != null) smokeAlarm.Play();

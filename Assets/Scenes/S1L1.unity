@@ -1134,7 +1134,7 @@ MonoBehaviour:
   leftEyeCamera: {fileID: 618643970}
   rightEyeCamera: {fileID: 2142969736}
   eyeSeparation: 0.05
-  fieldOfView: 70
+  fieldOfView: 85
   targetAspectWidth: 16
   targetAspectHeight: 9
 --- !u!81 &551483747
@@ -1549,7 +1549,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 70
+  field of view: 85
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -4938,7 +4938,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 70
+  field of view: 85
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -11257,7 +11257,7 @@ MonoBehaviour:
   isFlashlight: 0
   isGoBagItem: 0
   isMedicalSupply: 0
-  interactSound: {fileID: 0}
+  interactSound: {fileID: 8300000, guid: f9aa625823bea6f47a89b1409c2a8091, type: 3}
 --- !u!54 &8301348881050347528
 Rigidbody:
   m_ObjectHideFlags: 0
