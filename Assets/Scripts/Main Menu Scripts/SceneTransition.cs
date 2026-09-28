@@ -11,18 +11,43 @@ public class AutomaticSceneLoader : MonoBehaviour
     [Tooltip("The exact name of the scene you want to load (e.g., EarthquakeLevel).")]
     public string sceneToLoad = "NextSceneNameHere"; 
 
+    private bool isLoading = false;
+
     void Start()
     {
-        // This runs automatically the moment the scene loads!
+        // 1. Start the countdown automatically when the scene opens
         StartCoroutine(BeginCountdown());
+    }
+
+    void Update()
+    {
+        // 2. If the transition has already been triggered, ignore further inputs
+        if (isLoading) return;
+
+        // 3. Listen for manual input (controller, keyboard, mouse, or touch)
+        if (Input.anyKeyDown || Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+        {
+            Debug.Log("Manual input detected! Skipping timer.");
+            TriggerTransition();
+        }
     }
 
     IEnumerator BeginCountdown()
     {
-        // Pause the script for the set amount of seconds
+        // Pause in the background for the set amount of seconds
         yield return new WaitForSeconds(timeToWait);
         
-        // Load the target scene automatically
+        // If the player hasn't pressed anything yet, load automatically
+        if (!isLoading)
+        {
+            Debug.Log("Timer finished! Loading automatically.");
+            TriggerTransition();
+        }
+    }
+
+    void TriggerTransition()
+    {
+        isLoading = true; // Lock the input so the scene only loads once
         SceneManager.LoadScene(sceneToLoad);
     }
 }
